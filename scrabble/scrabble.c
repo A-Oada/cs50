@@ -46,7 +46,8 @@ int compute_score(string word)
     }
     // Calculating the score
     int score_count = 0;
-    for (int i = 0, j = strlen(word); word[i] != '\n'; i++)
+    int i, j;
+    for (i = 0, j = strlen(word); i < j; i++)
     {
         // For each letter, find it's location in the alphabet,
         int location = alphaloc(word[i]);
@@ -62,7 +63,7 @@ int alphaloc(char letter)
     //The alphabet, each letter will be matched with a location in POINTS array
     char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int loc = 0;
-    while (alphabet[i] != letter)
+    while (alphabet[loc] != letter)
     {
         loc++;
     }
