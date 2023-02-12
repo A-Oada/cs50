@@ -6,6 +6,7 @@
 // Points assigned to each letter of the alphabet
 int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
+int alphaloc(char letter);
 int compute_score(string word);
 
 int main(void)
@@ -43,12 +44,14 @@ int compute_score(string word)
         word[upping_loop] = toupper(word[upping_loop]);
         upping_loop++;
     }
+    // Calculating the score
     int score_count = 0;
-    for (int i = 0, int j = strlent(word); word[i] != '\n'; int i++)
+    for (int i = 0, j = strlen(word); word[i] != '\n'; i++)
     {
-        // For each letter, find it's location in the alphabet, and then add it's  value to score_count
-        int letter_loc = 0;
-        while (word)
+        // For each letter, find it's location in the alphabet,
+        int location = alphaloc(word[i]);
+        // Add it's score to the count
+        score_count = POINTS[location] + score_count;
     }
     return score_count;
 }
@@ -63,4 +66,5 @@ int alphaloc(char letter)
     {
         loc++;
     }
+    return loc;
 }
