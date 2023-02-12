@@ -50,16 +50,18 @@ int compute_score(string word)
     int i = 0;
     while (word[i] != 0)
     {
-        ward_array[i] = word[i];
+        word_array[i] = word[i];
     }
-    while (word[counting_loop] != '\0')
+    // Calculate the score
+    int counting_loop = 0, letter_loc = -1, score_count = 0;
+    while (word_array[counting_loop] != '\0')
     {
         // Find the location of the letter in the alphabet
         do
         {
             letter_loc++;
         }
-        while (word1[letter_loc] != alphabet[letter_loc]);
+        while (word_array[letter_loc] != alphabet[letter_loc]);
         score_count = POINTS[letter_loc] + score_count;
         // Reset the location back to zero for next loop iteration
         letter_loc = -1;
