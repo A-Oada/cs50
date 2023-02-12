@@ -27,10 +27,10 @@ int main(int argc, string argv[])
 {
     // ensure proper usage
     // TODO #1
-    int argument = argv[1][0];
-    if (argument< 5 || argument> 8)
+    if (argc > 0)
     {
-        printf("Error: wordsize must be either 5, 6, 7, or 8\n");
+        printf("Usage: ./wordle wordsize\n");
+        return 1;
     }
 
     int wordsize = 0;
