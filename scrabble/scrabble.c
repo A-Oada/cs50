@@ -36,7 +36,7 @@ int main(void)
 int compute_score(string word)
 {
     // TODO: Compute and return score for string
-    int counting_loop = 0, score_count = 0, letter_loc = 0, upping_loop = 0;
+    int counting_loop = 0, score_count = 0, letter_loc = -1, upping_loop = 0;
     // Convert word to uppercase to match with uppercase alphabet
     while (word[upping_loop] != '\0')
     {
@@ -56,6 +56,7 @@ int compute_score(string word)
         score_count = POINTS[letter_loc] + score_count;
         // Reset the location back to zero for next loop iteration
         letter_loc = 0;
+        counting_loop++;
     }
     return score_count;
 }
