@@ -28,8 +28,7 @@ int main(int argc, string argv[])
     // ensure proper usage
     // TODO #1
     string size_string = argv[1];
-
-    int size = atoi(size_string[0]);
+    char size_char = size_string[0];
     if (argc < 2)
     {
         printf("Usage: ./wordle wordsize\n");
