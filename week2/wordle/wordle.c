@@ -27,12 +27,13 @@ int main(int argc, string argv[])
 {
     // ensure proper usage
     // TODO #1
+    string size_string = atoi(string[1]);
     if (argc < 2)
     {
         printf("Usage: ./wordle wordsize\n");
         return 1;
     }
-    else if (atoi(argv[1][0]) < 5 || atoi(argv[1][0]) > 8)
+    else if (size < 5 || size > 8)
     {
         printf("Error: wordsize must be either 5, 6, 7, or 8\n");
         return 1;
@@ -45,7 +46,7 @@ int main(int argc, string argv[])
         {
             word = get_string("Input a 5-letter word: ");
         }
-        while (strlen(word) != atoi(argv[1][0]));
+        while (strlen(word) != size);
     }
 
     int wordsize = 0;
