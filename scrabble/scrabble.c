@@ -5,8 +5,6 @@
 
 // Points assigned to each letter of the alphabet
 int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
-//The alphabet, each letter will be matched with a location in POINTS array
-char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 int compute_score(string word);
 
@@ -45,6 +43,8 @@ int compute_score(string word)
         word[upping_loop] = toupper(word[upping_loop]);
         upping_loop++;
     }
+    //The alphabet, each letter will be matched with a location in POINTS array
+    char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     while (word[counting_loop] != '\0')
     {
         // Find the location of the letter in the alphabet
