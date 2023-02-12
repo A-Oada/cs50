@@ -36,37 +36,15 @@ int main(void)
 int compute_score(string word)
 {
     // TODO: Compute and return score for string
-    int upping_loop = 0;
+    //The alphabet, each letter will be matched with a location in POINTS array
+    char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // Convert word to uppercase to match with uppercase alphabet
+    int upping_loop = 0;
     while (word[upping_loop] != '\0')
     {
         word[upping_loop] = toupper(word[upping_loop]);
         upping_loop++;
     }
-    //The alphabet, each letter will be matched with a location in POINTS array
-    char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    // Store the input word in an array
-    char word_array[strlen(word)];
-    int i = 0;
-    while (word[i] != 0)
-    {
-        word_array[i] = word[i];
-        i++;
-    }
-    // Calculate the score
-    int counting_loop = 0, letter_loc = -1, score_count = 0;
-    while (word_array[counting_loop] != '\0')
-    {
-        // Find the location of the letter in the alphabet
-        do
-        {
-            letter_loc++;
-        }
-        while (word_array[letter_loc] != alphabet[letter_loc]);
-        score_count = POINTS[letter_loc] + score_count;
-        // Reset the location back to zero for next loop iteration
-        letter_loc = -1;
-        counting_loop++;
-    }
+
     return score_count;
 }
