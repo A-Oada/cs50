@@ -38,9 +38,13 @@ int main(void)
 int compute_score(string word)
 {
     // TODO: Compute and return score for string
-    int i = 0, score_count = 0, letter_loc = 0;
-    toupper(word)
-    while (word[i] != '\0')
+    int counting_loop = 0, score_count = 0, letter_loc = 0, upping_loop = 0;
+    // Convert word to uppercase to match with uppercase alphabet
+    while (word[upping_loop] != '\0')
+    {
+        word[upping_loop] = toupper(word[upping_loop]);
+    }
+    while (word[counting_loop] != '\0')
     {
         // Find the location of the letter in the alphabet
         while (word[letter_loc] != alphabet[letter_loc])
