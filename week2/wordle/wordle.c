@@ -39,12 +39,13 @@ int main(int argc, string argv[])
     }
     else
     {
-        printf("This is WORDLE50\nYou have 6 tries to guess the %i-letter word I'm thinking of\n", argc);
+        printf("This is WORDLE50\nYou have 6 tries to guess the %i-letter word I'm thinking of\n", argv[1][0]);
         string word;
         do
         {
-            printf()
+            word = get_string("Input a 5-letter word: ");
         }
+        while ()
     }
 
     int wordsize = 0;
