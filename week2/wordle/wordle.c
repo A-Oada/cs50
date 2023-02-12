@@ -27,13 +27,13 @@ int main(int argc, string argv[])
 {
     // ensure proper usage
     // TODO #1
-    string argument = argv[0];
-    if (argument != "./wordle")
+    if (strcmp(argv[0], "./wordle") != 0)
     {
         printf("Usage: ./wordle wordsize\n");
         return 1;
     }
-    else if (argv[1] < 5 || argv[1] > 8)
+    int argument = argv[1];
+    else if (argument[1] < 5 || argument[1] > 8)
     {
         printf("Error: wordsize must be either 5, 6, 7, or 8\n");
     }
