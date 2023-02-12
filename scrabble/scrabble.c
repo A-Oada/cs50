@@ -45,7 +45,7 @@ int compute_score(string word)
     }
     //The alphabet, each letter will be matched with a location in POINTS array
     char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char word1[] = word;
+    char word1[strlen(word)] = word;
     while (word[counting_loop] != '\0')
     {
         // Find the location of the letter in the alphabet
