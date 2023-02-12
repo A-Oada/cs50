@@ -32,7 +32,7 @@ int main(int argc, string argv[])
         printf("Usage: ./wordle wordsize\n");
         return 1;
     }
-    else if (size < 5 || size > 8)
+    else if (int isalnum(char c) && (size < 5 || size > 8))
     {
         printf("Error: wordsize must be either 5, 6, 7, or 8\n");
         return 1;
