@@ -43,6 +43,7 @@ int compute_score(string word)
     while (word[upping_loop] != '\0')
     {
         word[upping_loop] = toupper(word[upping_loop]);
+        upping_loop++;
     }
     while (word[counting_loop] != '\0')
     {
