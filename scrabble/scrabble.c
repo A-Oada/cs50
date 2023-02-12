@@ -48,10 +48,11 @@ int compute_score(string word)
     while (word[counting_loop] != '\0')
     {
         // Find the location of the letter in the alphabet
-        while (word[letter_loc] != alphabet[letter_loc])
+        do
         {
             letter_loc++;
         }
+        while (word[letter_loc] != alphabet[letter_loc]);
         score_count = POINTS[letter_loc] + score_count;
         // Reset the location back to zero for next loop iteration
         letter_loc = 0;
