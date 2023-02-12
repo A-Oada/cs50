@@ -1,0 +1,30 @@
+get input from user
+using a while loop (input fits parameters = false)
+{
+    get input from user
+}
+
+//Pyramid is a number of spaces that is equal to height - 1 initially
+//then number of spaces decrease by increments of 1 per row
+//eventually number of spaces = zero
+//while while the hashes start at 1 and increase gradually by increments of 1 per row
+
+using a loop
+    {
+        while (height > 0)
+        {
+            int spaces = height - 1
+            while (spaces > 0)
+            {
+                print(" ");
+                spaces--
+            }
+            int hashes = height
+            do
+            {
+                print("#")
+                hashes--
+            }while (hashes > height)
+            height --
+        }
+    }
