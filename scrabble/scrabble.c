@@ -24,4 +24,10 @@ int main(void)
 int compute_score(string word)
 {
     // TODO: Compute and return score for string
+    int i = 0, score_count = 0;
+    toupper(word)
+    while (word[i] != '\0')
+    {
+        
+    }
 }
