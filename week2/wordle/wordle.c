@@ -37,6 +37,15 @@ int main(int argc, string argv[])
         printf("Error: wordsize must be either 5, 6, 7, or 8\n");
         return 1;
     }
+    else
+    {
+        printf("This is WORDLE50\nYou have 6 tries to guess the %i-letter word I'm thinking of\n", argc);
+        string word;
+        do
+        {
+            printf()
+        }
+    }
 
     int wordsize = 0;
 
