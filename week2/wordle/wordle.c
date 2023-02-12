@@ -27,7 +27,7 @@ int main(int argc, string argv[])
 {
     // ensure proper usage
     // TODO #1
-    printf("%s", `argv[1]);
+    printf("%i\n", argv[1][0]);
 
     int wordsize = 0;
 
