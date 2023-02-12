@@ -45,7 +45,7 @@ int main(int argc, string argv[])
         {
             word = get_string("Input a 5-letter word: ");
         }
-        while ()
+        while (strlen(word) != argv[1][0]);
     }
 
     int wordsize = 0;
