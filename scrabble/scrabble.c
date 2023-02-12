@@ -45,6 +45,10 @@ int compute_score(string word)
         word[upping_loop] = toupper(word[upping_loop]);
         upping_loop++;
     }
-
+    int score_count = 0;
+    for (int i = 0, int j = strlent(word); word[i] != '\n'; int i++)
+    {
+        // For each letter, find it's location in the alphabet, and then add it's  value to score_count
+    }
     return score_count;
 }
