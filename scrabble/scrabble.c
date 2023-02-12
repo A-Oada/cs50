@@ -51,6 +51,7 @@ int compute_score(string word)
     while (word[i] != 0)
     {
         word_array[i] = word[i];
+        i++;
     }
     // Calculate the score
     int counting_loop = 0, letter_loc = -1, score_count = 0;
