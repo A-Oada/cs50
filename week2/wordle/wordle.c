@@ -42,7 +42,7 @@ int main(int argc, string argv[])
         return 1;
     }
     wordsize = atoi(argv[1]);
-    printf("This is WORDLE50\nYou have 6 tries to guess the 5-letter word I'm thinking of\n");
+
 
     // open correct file, each file has exactly LISTSIZE words
     char wl_filename[6];
