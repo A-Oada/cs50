@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-// each of our text files contains 1000 words
+// each text file contains 1000 words
 #define LISTSIZE 1000
 
 // values for colors and score (EXACT == right letter, right place; CLOSE == right letter, wrong place; WRONG == wrong letter)
@@ -25,7 +25,7 @@ void print_word(string guess, int wordsize, int status[]);
 
 int main(int argc, string argv[])
 {
-    // ensure proper usage
+    // ensure proper usage by ensuring that user entered one argument only
     // TODO #1
     if (argc != 2)
     {
@@ -70,7 +70,7 @@ int main(int argc, string argv[])
     int guesses = wordsize + 1;
     bool won = false;
 
-    // print greeting, using ANSI color codes to demonstrate
+    // print greeting, using ANSI color codes
     printf(GREEN"This is WORDLE50"RESET"\n");
     printf("You have %i tries to guess the %i-letter word I'm thinking of\n", guesses, wordsize);
 
@@ -159,13 +159,6 @@ int check_word(string guess, int wordsize, int status[], string choice)
             }
         }
     }
-    // HINTS
-    // iterate over each letter of the guess
-    // iterate over each letter of the choice
-    // compare the current guess letter to the current choice letter
-    // if they're the same position in the word, score EXACT points (green) and break so you don't compare that letter further
-    // if it's in the word, but not the right spot, score CLOSE point (yellow)
-    // keep track of the total score by adding each individual letter's score from above
 
     return score;
 }
