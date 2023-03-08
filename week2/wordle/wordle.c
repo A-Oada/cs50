@@ -141,13 +141,13 @@ int check_word(string guess, int wordsize, int status[], string choice)
             if (k == l && guess[k] == choice[l])
             {
                 score = score + EXACT;
-                status[k] = guess[k];
+                status[k] = EXACT;
                 break;
             }
             else if (guess[k] == choice[l])
             {
                 score = score + CLOSE;
-                status[k] = guess[k];
+                status[k] = CLOSE;
                 break;
             }
         }
