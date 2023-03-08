@@ -136,7 +136,7 @@ int check_word(string guess, int wordsize, int status[], string choice)
     // TODO #5
     for (int k = 0; k < wordsize; k++)
     {
-        for (int l = k; l < wordsize; l++)
+        for (int l = 0; l < wordsize; l++)
         {
             if (k == l && guess[k] == choice[l])
             {
@@ -166,7 +166,24 @@ void print_word(string guess, int wordsize, int status[])
 {
     // print word character-for-character with correct color coding, then reset terminal font to normal
     // TODO #6
-
+    for (int j = 0; j < wordsize; j++)
+    {
+        if (status[j] == EXACT)
+        {
+            printf(GREEN"%c", guess[j]);
+            continue;
+        }
+        else if (status[j] == CLOSE)
+        {
+            printf(YELLOW"%c", guess[j]);
+            continue;
+        }
+        else
+        {
+            printf(RED"%c"RESET, guess[j]);
+            continue;
+        }
+    }
 
     printf("\n");
     return;
