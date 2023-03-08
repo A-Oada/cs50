@@ -85,11 +85,11 @@ int main(int argc, string argv[])
 
         // set all elements of status array initially to 0, aka WRONG
         // TODO #4
-        int j = 0;
-        while (status[j] != '\0')
+        // Determine length of array
+        int statuslen = sizeof status / sizeof status[0];
+        for (int j = 0; j < statuslen; j++)
         {
-            status[j] = 0;
-            j++;
+            status[i] = 0;
         }
         // Calculate score for the guess
         int score = check_word(guess, wordsize, status, choice);
