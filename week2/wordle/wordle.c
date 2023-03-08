@@ -89,8 +89,9 @@ int main(int argc, string argv[])
         int statuslen = sizeof status / sizeof status[0];
         for (int j = 0; j < statuslen; j++)
         {
-            status[i] = 0;
+            status[j] = 0;
         }
+
         // Calculate score for the guess
         int score = check_word(guess, wordsize, status, choice);
 
