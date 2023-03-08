@@ -148,7 +148,6 @@ int check_word(string guess, int wordsize, int status[], string choice)
             {
                 score = score + CLOSE;
                 status[k] = CLOSE;
-                break;
             }
         }
     }
