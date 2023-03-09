@@ -95,7 +95,7 @@ void print_winner(void)
             win_vote = candidates[i].votes;
         }
     }
-    for (int i = 0; i < (sizeof candidates / sizeof candidate); i++)
+    for (int i = 0; i < (sizeof(candidates) / sizeof(struct candidate)); i++)
     {
         if (candidates[i].votes == win_vote)
         {
