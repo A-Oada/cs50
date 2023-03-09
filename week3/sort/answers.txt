@@ -1,19 +1,11 @@
 sort1 uses: bubble sort
 
-How do you know?: TODO
-Upper boundary: 8.184 seconds (using random50000.txt)
-Lower boundary: 0.397 seconds (using sorted50000.txt)
-Therefore: O(n^2) and Ω(n)
+How do you know?: Upper boundary: 8.184 seconds (using random50000.txt), lower boundary: 0.397 seconds (using sorted50000.txt), therefore: O(n^2) and Ω(n)
 
 sort2 uses: merge sort
 
-How do you know?: TODO
-Upper boundary ≈ Lower boundary
-Therefore it is either merge sort or selection sort
-However when compared to boundaries of selection sort, sort2 completes in much shorter time
-Therefore: Θ(nlogn)
+How do you know?: Upper boundary ≈ Lower boundary therefore it is either merge sort or selection sort, however when compared to boundaries of selection sort, sort2 completes in much shorter time therefore: Θ(nlogn)
 
 sort3 uses: selection sort
 
-How do you know?: TODO
-same as sort2
+How do you know?: same as sort2
