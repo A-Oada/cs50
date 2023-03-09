@@ -88,7 +88,8 @@ void print_winner(void)
     ** Once  the winning vote is determined,  Print each voter who has the winning vote
     ** The number of iterations of the loop depend on the number of candidates which is the same as the number
     */
-    int win_vote = 0, win_size = 0, cand_size = (sizeof(candidates) / sizeof(candidate));
+    int win_vote = 0, win_size = 0, cand_size = 0;
+    for (; candidates[cand_size].name != NULL; cand_size++)
     for (int i = 0; i < cand_size; i++)
     {
         if (win_vote < candidates[i].votes)
