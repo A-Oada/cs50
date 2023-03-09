@@ -99,14 +99,7 @@ void print_winner(void)
     }
     for (int i = 0; i < cand_size; i++)
     {
-        if (candidates[i].votes == win_vote)
-        {
-            win_size++;
-        }
-    }
-    for (int i = 0; i < cand_size; i++)
-    {
-        if  (candidates[i].votes == win_size)
+        if  (candidates[i].votes == win_vote)
         {
             printf("%s\n", candidates[i].name);
         }
