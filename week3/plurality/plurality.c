@@ -86,8 +86,7 @@ void print_winner(void)
     /*
     **  Loop to find the largest number of all the votes
     ** Once  the winning vote is determined,  Print each voter who has the winning vote
-    ** The number of iterations of the loop depend on the number of candidates
-    ** Number of iterations is determined by the variable cand_size
+    ** The number of iterations of the loop depend on the number of candidates which is the same as the number
     */
     int win_vote = 0, win_size = 0, cand_size = (sizeof(candidates) / sizeof(candidate));
     for (int i = 0; i < cand_size; i++)
