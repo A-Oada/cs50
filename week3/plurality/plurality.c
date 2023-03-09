@@ -68,7 +68,7 @@ bool vote(string name)
 {
     // TODO
     // A loop that compares the name to each element in the array candidates
-    for (int i = 0; i < MAX; i++)
+    for (int i = 0; i < argc; i++)
     {
         if (strcmp(name, candidates[i].name) == 0)
         {
