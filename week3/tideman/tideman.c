@@ -116,10 +116,8 @@ bool vote(int rank, string name, int ranks[])
 void record_preferences(int ranks[])
 {
     // Row is determined by i, ith element in ranks will determine the row that represents the most preferred candidate
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = ranks[0]; i < candidate_count; i++)
     {
-        if (i == ranks[i])
-        {
             for (int j = 0; j < candidate_count; j++)
             {
                 // If the ith elemen in ranks precedes the jth element then it is most preferred, therefore add edge
@@ -127,11 +125,9 @@ void record_preferences(int ranks[])
                 {
                     preferences[i][j] = 1;
                 }
+                // Reset i to check ranks to avoid skipping elements of ranks
                 i = 0;
             }
-            // Reset i to check ranks to avoid skipping elements of ranks
-
-        }
     }
     return;
 }
