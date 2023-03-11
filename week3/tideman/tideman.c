@@ -124,7 +124,7 @@ void record_preferences(int ranks[])
             for (int j = 0; j < candidate_count; j++)
             {
                 // If the ith elemen in ranks precedes the jth element then it is most preferred, therefore add edge
-                if (j > i)
+                if (k < j)
                 {
                     preferences[i][j] = 1;
                 }
