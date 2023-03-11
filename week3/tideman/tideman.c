@@ -116,7 +116,7 @@ bool vote(int rank, string name, int ranks[])
 void record_preferences(int ranks[])
 {
     // Variable k will determine the element in ranks to be checked and reset to prevent skiping elements
-    for (int k = 0; k < cancidate_count; k++)
+    for (int k = 0; k < candidate_count; k++)
     {
         // Row is determined by i, ith element in ranks will determine the row that represents the most preferred candidate
         for (int i = ranks[k]; i < candidate_count; i++)
