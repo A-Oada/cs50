@@ -115,7 +115,7 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // Variable k will determine the element in ranks to be checked and reset to prevent skiping elements
+    // Variable k will determine the element in ranks to be checked and reset row to prevent skiping elements
     for (int k = 0; k < candidate_count; k++)
     {
         // Row is determined by i, ith element in ranks will determine the row that represents the most preferred candidate
@@ -123,6 +123,7 @@ void record_preferences(int ranks[])
         {
             for (int j = 0; j < candidate_count; j++)
             {
+                // If the kth element is smaller than the compared element (i.e: precedes it) then place edge
                 // If the ith elemen in ranks precedes the jth element then it is most preferred, therefore add edge
                 if (k < j)
                 {
