@@ -125,9 +125,8 @@ void record_preferences(int ranks[])
                 {
                     preferences[i][j] = 1;
                 }
-                // Reset i to check ranks to avoid skipping elements of ranks
-                i = 0;
             }
+
     }
     return;
 }
