@@ -189,9 +189,9 @@ void sort_pairs(void)
             int temp;
             if (strength[i][1] < strength[j][1])
             {
-                temp = strength[j][1];
-                strength[j][1] = strength[i][1];
-                strength[i][1] = temp;
+                temp = strength[i][1];
+                strength[i][1] = strength[j][1];
+                strength[j][1] = temp;
             }
         }
     }
