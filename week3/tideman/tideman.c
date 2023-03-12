@@ -198,6 +198,11 @@ void sort_pairs(void)
             }
         }
     }
+    // Now use strength as a reference to sort pairs
+    do
+    {
+
+    }
     return;
 }
 
