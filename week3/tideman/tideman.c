@@ -171,10 +171,11 @@ void sort_pairs(void)
     // This means that element[0] in strength is  pairs[2] and the gap between loser and winner is 5
     for (int i = 0; i < pair_count; i++)
     {
-        for (int j = 0; j < pair_count; j++)
+        int j = i+1;
+        do
         {
             pair temp;
-            int gap = abs(preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
+            int gap = abs(preferences[j][i] - preferences[i][j]);
             if ()
         }
     }
