@@ -147,16 +147,14 @@ void add_pairs(void)
                 pairs[temp].winner = i;
                 pairs[temp].loser = j;
                 pair_count++, temp++;
+                j++;
             }
             else if (preferences[j][i] > preferences[i][j])
             {
                 pairs[temp].winner = j;
                 pairs[temp].loser = i;
                 pair_count++, temp++;
-            }
-            else
-            {
-                continue;
+                j++;
             }
             j++;
         }
@@ -181,7 +179,7 @@ void sort_pairs(void)
         // Use pairs[i] to find loser and winner
         // Since each winner/loser corresponds to two elemens in preferences, subtract them to get strength
         // Use abs function to avoid negative strength value
-        strength[i][1] = abs(preferences[i][pairs[i].winner] - preferences[i][pairs[i].loser]);
+        strength[i][1] = abs(preferences[pairs[i].loser][pairs[i].winner] - preferences[pairs[i].loser][pairs[i].winner]);
     }
     // Sort array, using strength[i][1] as reference
     // After sorting, strength[i][0] will be used to determine to determine which is the leading pair
