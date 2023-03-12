@@ -169,14 +169,30 @@ void sort_pairs(void)
     // The second index denotes the number of the pair in pairs
     // For example, if strength[0][0] = 0, strength[0][1] = 5
     // This means that element[0] in strength is  pairs[2] and the gap between loser and winner is 5
+    int strength[pair_count][2];
     for (int i = 0; i < pair_count; i++)
     {
-        int j = i+1;
-        do
+        strength[i][0] = i;
+        int j = i + 1;
+        // Use pairs[i] to find loser and winner
+        // Since each winner/loser corresponds to two elemens in preferences, subtract them to get strength
+        // Use abs function to avoid negative strength value
+        strength[i][1] = abs(preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
+    }
+    // Sort array, using strength[i][1] as reference
+    // After sorting, strength[i][0] will be used to determine to determine which is the leading pair
+    // Sorting is done using selection sort - not good enough to do merge sorting yet :(
+    for (int i = 0; i < pair_count; i++)
+    {
+        for (int j = 0; j < pair_count; j++)
         {
-            pair temp;
-            int gap = abs(preferences[j][i] - preferences[i][j]);
-            if ()
+            int temp;
+            if (strength[i][1] > strength[j][1])
+            {
+                temp = strength[j][1];
+                strength[j][1] = strength[i][1];
+                strength[i][1] = temp;
+            }
         }
     }
     return;
