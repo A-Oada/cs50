@@ -132,9 +132,13 @@ void record_preferences(int ranks[])
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
+    // temp is the variable that determines the element in pairs to be modified
+    // Because if i is used some elements will be skipped
     int temp = 0;
     for (int i = 0; i < candidate_count; i++)
     {
+        // Value of j is  determine as such because the number of pairs is a combination of pair_count and 2
+        // So to avoid the same pair being checked  more than once, j will always be bigger than  i by 1
         int j = i + 1;
         do
         {
@@ -176,6 +180,7 @@ void sort_pairs(void)
         int j = i + 1;
         strength[i][1] = abs(preferences[i][pairs[i].winner] - preferences[i][pairs[i].loser]);
     }
+
     return;
 }
 
