@@ -180,9 +180,11 @@ void sort_pairs(void)
         int j = i + 1;
         // Use pairs[i] to find loser and winner
         // Since each winner/loser corresponds to two elemens in preferences, subtract them to get strength
-        // use abs function to avoid negative strength value
+        // Use abs function to avoid negative strength value
         strength[i][1] = abs(preferences[i][pairs[i].winner] - preferences[i][pairs[i].loser]);
     }
+    // Sort array, using strength[i][1] as reference
+    // After sorting, strength[i][0] will be used to determine the leading pair
 
     return;
 }
