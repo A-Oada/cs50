@@ -238,6 +238,8 @@ void lock_pairs(void)
                     }
                 }
             }
+            // Check if temp_squared has any non-zero element in it's diagonal
+
         }
     }
     return;
