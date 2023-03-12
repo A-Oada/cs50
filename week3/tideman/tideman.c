@@ -1,4 +1,5 @@
 #include <cs50.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -164,7 +165,18 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // TODO
+    // Store the differences between winner and loser in each pair in an array
+    // The second index denotes the number of the pair in pairs
+    // For example, if strength[0][0] = 0, strength[0][1] = 5
+    // This means that element[0] in strength is  pairs[2] and the gap between loser and winner is 5
+    int strength[pair_count][2];
+    for (int i 0; i < pair_count; i++)
+    {
+        strength[i][0] = i;
+        int j = i + 1;
+        do
+        strength[i][1] = preferences[i][pairs[i].winner] - [preferences]
+    }
     return;
 }
 
