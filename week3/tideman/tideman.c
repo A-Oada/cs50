@@ -199,9 +199,11 @@ void sort_pairs(void)
         }
     }
     // Now use strength as a reference to sort pairs
-    do
+    for (int i = 0; i < pair_count; i++)
     {
-
+        pair temp = pairs[i];
+        pairs[i] = pairs[strength[i][0]];
+        pairs[strength[i][0]] = temp;
     }
     return;
 }
