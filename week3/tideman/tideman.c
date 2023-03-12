@@ -184,13 +184,19 @@ void sort_pairs(void)
         strength[i][1] = abs(preferences[i][pairs[i].winner] - preferences[i][pairs[i].loser]);
     }
     // Sort array, using strength[i][1] as reference
-    // After sorting, strength[i][0] will be used to determine the leading pair
-    // Sorting is done using bubble sort - not good enough to do merge sorting yet :(
+    // After sorting, strength[i][0] will be used to determine to determine which is the leading pair
+    // Sorting is done using selection sort - not good enough to do merge sorting yet :(
     for (int i = 0; i < pair_count; i++)
     {
         for (int j = 0; j < pair_count; j++)
         {
-
+            int temp;
+            if (strength[i][1] > strength[j][1])
+            {
+                temp = strength[j][1];
+                strength[j][1] = strength[i][1];
+                strength[i][1] = temp;
+            }
         }
     }
     return;
