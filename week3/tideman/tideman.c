@@ -174,7 +174,8 @@ void sort_pairs(void)
         for (int j = 0; j < pair_count; j++)
         {
             pair temp;
-            pairs[]
+            int gap = abs(preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
+            if ()
         }
     }
     return;
