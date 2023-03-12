@@ -213,7 +213,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = i + 1; j < candidate_count; j++)
+        for (int j = i + 1; j <= candidate_count; j++)
         {
             // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
             // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
