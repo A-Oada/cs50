@@ -213,7 +213,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = 0; j <= candidate_count; j++)
+        for (int j = 0; j < candidate_count; j++)
         {
             // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
             // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
@@ -259,6 +259,9 @@ void lock_pairs(void)
 // Print the winner of the election
 void print_winner(void)
 {
-    // TODO
+    // Source will be checked by the amounts of "true" values in the locked array
+    // The row that has the largest amount of true values is the source
+    int source;
+    for (int i = 0; i < candidates_count; i ++)
     return;
 }
