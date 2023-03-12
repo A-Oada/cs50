@@ -234,7 +234,7 @@ void lock_pairs(void)
                     temp_squared[y][x] = false;
                     for (int z = 0; z < candidate_count; z++)
                     {
-                        temp_squared[x][y] += temp_locked[i][k]*temp_locked[k][j];
+                        temp_squared[x][y] += temp_locked[i][z]*temp_locked[z][j];
                     }
                 }
             }
