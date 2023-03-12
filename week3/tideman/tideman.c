@@ -134,7 +134,8 @@ void add_pairs(void)
     int temp = 0;
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = i + 1; j < candidate_count; j++)
+        int j = i + 1;
+        do
         {
             if (preferences[i][j] > preferences[j][i])
             {
@@ -152,7 +153,9 @@ void add_pairs(void)
             {
                 continue;
             }
+            j++;
         }
+        while (j < candidate_count);
     }
 
     return;
