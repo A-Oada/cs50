@@ -215,6 +215,7 @@ void lock_pairs(void)
     {
         for (int j = i + 1; j <= pair_count; j++)
         {
+            // For a cycle to appear a pattern of triangle of trues will appear in the array
             locked[pairs[i].winner][pairs[i].loser] = true;
             locked[pairs[i].loser][pairs[i].winner] = false;
         }
