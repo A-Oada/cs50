@@ -261,7 +261,11 @@ void print_winner(void)
 {
     // Source will be checked by the amounts of "true" values in the locked array
     // The row that has the largest amount of true values is the source
-    int source;
+    // most is a sum that will determine which row has the largest number of true values
+    int source, most = 0;
     for (int i = 0; i < candidates_count; i ++)
+    {
+        int temp_sum = 0;
+    }
     return;
 }
