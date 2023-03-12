@@ -223,16 +223,21 @@ void lock_pairs(void)
             bool temp_squared[MAX][MAX];
             // Copy elements of locked in two temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
-            // Multiply temp_locked by itself
+            // Add edge to temp_locked
+            temp_locked[pairs[i].winner][pairs[i].loser] = true;
+            temp_locked[pairs[i].loser][pairs[i].winner] = false;
+            // Multiply temp_locked by itself and store result in temp_squared
             for (int x = 0; x < candidate_count; x++)
             {
                 for (int y = 0; y < candidate_count; y++)
                 {
-                    temp_squared[y][x] = true;
+                    temp_squared[y][x] = false;
+                    for (int z = 0; z < candidate_count; z++)
+                    {
+                        temp_squared[x][y] += temp_locked[i][k]*temp_locked[k][j];
+                    }
                 }
             }
-            locked[pairs[i].winner][pairs[i].loser] = true;
-            locked[pairs[i].loser][pairs[i].winner] = false;
         }
     }
     return;
