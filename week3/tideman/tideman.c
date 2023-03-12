@@ -211,9 +211,9 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    for (int i = 0; i < pair_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = i + 1; j <= pair_count; j++)
+        for (int j = i + 1; j < candidate_count; j++)
         {
             // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
             // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
@@ -238,8 +238,19 @@ void lock_pairs(void)
                     }
                 }
             }
-            // Check if temp_squared has any non-zero element in it's diagonal
-
+            // Check if temp_squared has any non-zero elements in it's diagonal
+            for (int x = 0; x < candidate_count; x++)
+            {
+                if (temp_squared[i][i] > 0)
+                {
+                    cyclic = true;
+                }
+            }
+            if (!cyclic)
+            {
+                locked[pairs[i].winner][pairs[i].loser] = true;
+                locked[pairs[i].loser][pairs[i].winner] = false;
+            }
         }
     }
     return;
