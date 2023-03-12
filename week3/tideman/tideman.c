@@ -215,7 +215,22 @@ void lock_pairs(void)
     {
         for (int j = i + 1; j <= pair_count; j++)
         {
-            // For a cycle to appear a pattern of triangle of trues will appear in the array
+            // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
+            // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
+            // cyclic contains the resuslt to whether adding current edge will cause a cycle
+            bool cyclic = false;
+            bool temp_locked[MAX][MAX];
+            bool temp_squared[MAX][MAX]
+            // Copy elements of locked in two temp_locked
+            memcpy(temp_locked, locked, sizeof(locked));
+            // Multiply temp_locked by itself
+            for (int x = 0; x < candidate_count; x++)
+            {
+                for (int y = 0; y < candidate_count; y++)
+                {
+
+                }
+            }
             locked[pairs[i].winner][pairs[i].loser] = true;
             locked[pairs[i].loser][pairs[i].winner] = false;
         }
