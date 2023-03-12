@@ -192,6 +192,9 @@ void sort_pairs(void)
                 temp = strength[i][1];
                 strength[i][1] = strength[j][1];
                 strength[j][1] = temp;
+                temp = strength[i][0];
+                strength[i][0] = strength[j][0];
+                strength[j][0] = temp;
             }
         }
     }
