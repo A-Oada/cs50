@@ -185,7 +185,14 @@ void sort_pairs(void)
     }
     // Sort array, using strength[i][1] as reference
     // After sorting, strength[i][0] will be used to determine the leading pair
+    // Sorting is done using bubble sort - not good enough to do merge sorting yet :(
+    for (int i = 0; i < pair_count; i++)
+    {
+        for (int j = 0; j < pair_count; j++)
+        {
 
+        }
+    }
     return;
 }
 
