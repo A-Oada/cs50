@@ -220,7 +220,7 @@ void lock_pairs(void)
             // cyclic contains the resuslt to whether adding current edge will cause a cycle
             bool cyclic = false;
             bool temp_locked[MAX][MAX];
-            bool temp_squared[MAX][MAX]
+            bool temp_squared[MAX][MAX];
             // Copy elements of locked in two temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
             // Multiply temp_locked by itself
@@ -228,7 +228,7 @@ void lock_pairs(void)
             {
                 for (int y = 0; y < candidate_count; y++)
                 {
-
+                    temp_squared[y][x] = true;
                 }
             }
             locked[pairs[i].winner][pairs[i].loser] = true;
