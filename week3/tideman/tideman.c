@@ -249,13 +249,13 @@ void print_winner(void)
  *  locked will only be updated if and only if cyclic is false.
  *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
 */
-bool bfs(bool mat[][MAX], int n, int start)
+bool bfs(bool mat[MAX][MAX], int n, int start)
 {
-    int queue[MAX]; // queue for storing nodes
+    int queue[candidate_count]; // queue for storing nodes
     int front = 0; // front index of queue
     int rear = 0; // rear index of queue
-    int visited[MAX]; // array for marking visited nodes
-    int parent[MAX]; // array for storing parent nodes
+    int visited[candidate_count]; // array for marking visited nodes
+    int parent[candidate_count]; // array for storing parent nodes
     int i, u, v;
 
     // initialize visited and parent arrays
