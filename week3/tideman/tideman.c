@@ -1,4 +1,5 @@
 #include <cs50.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -188,8 +189,31 @@ void lock_pairs(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-            locked[pairs[i].winner][pairs[i].loser] = true;
-            locked[pairs[i].loser][pairs[i].winner] = false;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            /**
+             *  Use BFS algorithm to find whether a matrix is cyclic
+             *  For a matrix to be cyclic, a node that has already been visited that is not the parent of the current node
+             *  must be encountered by the current node.
+             *  The number nodes in the graph is the same number of the candidates
+             *  The matrix passed into the algorithm will be a copy of the main locked function but added to it is the pair
+             *  that will be checked for possible cycle causing.
+             *  Result of the algorithm will be stored in the bool variable cyclic.
+             *  locked will only be updated if and only if cyclic is false
+            */
+            bool temp_locked[MAX][MAX];
+            // Copy elements of locked into temp_locked
+            memcpy(temp_locked, locked, sizeof(locked));
+            // Add edge to temp_locked
+            temp_locked[pairs[i].winner][pairs[i].loser] = true;
+            temp_locked[pairs[i].loser][pairs[i].winner] = false;
+
+            if (!cyclic)
+            {
+                locked[pairs[i].winner][pairs[i].loser] = true;
+                locked[pairs[i].loser][pairs[i].winner] = false;
+            }
+        }
     }
     return;
 }
