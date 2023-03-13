@@ -268,7 +268,10 @@ void print_winner(void)
         int temp_sum = 0;
         for (int j = 0; j < candidates_count; j++)
         {
+            if (locked[i][j] == true)
+            {
 
+            }
         }
     }
     return;
