@@ -170,16 +170,9 @@ void sort_pairs(void)
     {
         for (int j = 0; j < pair_count; j++)
         {
+            // Sorting is done by comparing i-th pair gap to the j-th gap, if the i-th gap is smaller, swap the pairs
             int gap1 = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
             int gap2 = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
-            if (gap1 < 0)
-            {
-                gap1 = gap1 * -1;
-            }
-            if (gap2 < 0)
-            {
-                gap2 = gap2 * -1;
-            }
             if (gap1 < gap2)
             {
                 pair temp = pairs[i];
@@ -200,11 +193,11 @@ void lock_pairs(void)
         {
             // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
             // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
-            // cyclic contains the resuslt to whether adding current edge will cause a cycle
+            // cyclic contains the result to whether adding current edge will cause a cycle
             bool cyclic = false;
             bool temp_locked[MAX][MAX];
             bool temp_squared[MAX][MAX];
-            // Copy elements of locked in two temp_locked
+            // Copy elements of locked into temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
             // Add edge to temp_locked
             temp_locked[pairs[i].winner][pairs[i].loser] = true;
