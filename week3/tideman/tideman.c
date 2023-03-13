@@ -203,54 +203,55 @@ void lock_pairs(void)
              *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
             */
             bool temp_locked[MAX][MAX];
-            bool cyclic;
-
             // Copy elements of locked into temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
             // Add edge to temp_locked
             temp_locked[pairs[i].winner][pairs[i].loser] = true;
             temp_locked[pairs[i].loser][pairs[i].winner] = false;
-
             // Implementation of the BFS algorithm
-            int queue[candidate_count], visited[candidate_count], parent[candidate_count];
-            int front = 0, rear = 0;
+            bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start)
+            {
+                int queue[candidate_count], visited[candidate_count], parent[candidate_count];
+                int front = 0, rear = 0;
 
-            // The initial values of parents and visited are all zeroes
-            for (int k = 0; k < candidate_count; i++)
-            {
-                visited[k] = 0;
-                parent[k] = 0;
-            }
-            // Place the first node in the queue and mark it as visited
-            queue[rear++] = i;
-            visited[i] = true;
-            // Loop from front to rear, to empty the queue
-            while (front < rear)
-            {
-                // Dequeue node
-                int x = queue[front++];
-                // Search all child nodes of queue
-                for (int y = 0; y < candidate_count; y++)
+                // The initial values of parents and visited are all zeroes
+                for (int i = 0; i < nodes; i++)
                 {
-                    if (temp_locked[x][y] == true) // If there is an edge between element x and element y
-                        {
-                            // If this element has not been visited then enqueu it and mark it as visited
-                            if (visited[y] == true)
-                            {
-                                queue[rear++] = y;
-                                visited[y] = true;
-                                // Set the parent of v as x
-                                parent[y] = x;
-                            }
-                            // If y has already been visited and it is not a parent of x, then a cycle exists
-                            else if (parent[x] != y)
-                            {
-                                cyclic = true;
-                            }
-                        }
+                    visited[i] = 0;
+                    parent[i] = 0;
                 }
+                // Place the first node in the queue and mark it as visited
+                queue[rear++] = start;
+                visited[start] = true;
+                // Loop from front to rear, to empty the queue
+                while (front < rear)
+                {
+                    // Dequeue node
+                    int x = queue[front++];
+                    // Search all child nodes of queue
+                    for (int y = 0; y < nodes; y++)
+                    {
+                        if (test_mat[x][y] == true) // If there is an edge between element x and element y
+                            {
+                                // If this element has not been visited then enqueu it and mark it as visited
+                                if (visited == true)
+                                {
+                                    queue[rear++] = y;
+                                    visited[y] = true;
+                                    // Set the parent of v as x
+                                    parent[y] = x;
+                                }
+                                // If y has already been visited and it is not a parent of x, then a cycle exists
+                                else if (parent[u] != v)
+                                {
+                                    return true;
+                                }
+                            }
+                    }
+                }
+                return false;
             }
-            cyclic = false;
+            bool cyclic = check_cycle(temp_locked, candidate_count, i);
             if (!cyclic)
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;
