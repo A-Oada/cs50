@@ -223,7 +223,7 @@ void lock_pairs(void)
             }
             // Place the first node in the queue and mark it as visited
             queue[rear++] = i;
-            visited[start] = true;
+            visited[i] = true;
             // Loop from front to rear, to empty the queue
             while (front < rear)
             {
@@ -235,7 +235,7 @@ void lock_pairs(void)
                     if (temp_locked[x][y] == true) // If there is an edge between element x and element y
                         {
                             // If this element has not been visited then enqueu it and mark it as visited
-                            if (visited == true)
+                            if (visited[y] == true)
                             {
                                 queue[rear++] = y;
                                 visited[y] = true;
@@ -243,7 +243,7 @@ void lock_pairs(void)
                                 parent[y] = x;
                             }
                             // If y has already been visited and it is not a parent of x, then a cycle exists
-                            else if (parent[u] != v)
+                            else if (parent[x] != y)
                             {
                                 cyclic = true;
                             }
