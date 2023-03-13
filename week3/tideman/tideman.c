@@ -266,6 +266,10 @@ void print_winner(void)
     for (int i = 0; i < candidates_count; i ++)
     {
         int temp_sum = 0;
+        for (int j = 0; j < candidates_count; j++)
+        {
+
+        }
     }
     return;
 }
