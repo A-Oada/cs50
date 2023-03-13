@@ -263,16 +263,22 @@ void print_winner(void)
     // The row that has the largest amount of true values is the source
     // most is a sum that will determine which row has the largest number of true values
     int source, most = 0;
-    for (int i = 0; i < candidates_count; i ++)
+    for (int i = 0; i < candidate_count; i ++)
     {
         int temp_sum = 0;
-        for (int j = 0; j < candidates_count; j++)
+        for (int j = 0; j < candidate_count; j++)
         {
             if (locked[i][j] == true)
             {
-
+                temp_sum++;
             }
         }
+        if (temp_sum > most)
+        {
+            most = temp_sum;
+            source = i;
+        }
     }
+    printf("%s\n", candidates[source]);
     return;
 }
