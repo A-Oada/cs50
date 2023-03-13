@@ -177,12 +177,11 @@ void sort_pairs(void)
         // Use pairs[i] to find loser and winner
         // Since each winner/loser corresponds to two elemens in preferences, subtract them to get strength
         // If value is negative, reverse sign
-        gap = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
+        int gap = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
         if (gap < 0)
         {
             gap = gap * 1;
         }
-        preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]
         strength[i][1] = gap;
     }
     // Sort array, using strength[i][1] as reference
