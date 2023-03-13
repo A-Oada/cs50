@@ -173,7 +173,7 @@ void sort_pairs(void)
             // Sorting is done by comparing i-th pair gap to the j-th gap, if the i-th gap is smaller, swap the pairs
             int strength1 = preferences[pairs[i].winner][pairs[i].loser];
             int strength2 = preferences[pairs[j].winner][pairs[j].loser];
-            if (strength1 < strength2)
+            if (strength1 < strength2 && i < j)
             {
                 pair temp = pairs[j];
                 pairs[j] = pairs[i];
