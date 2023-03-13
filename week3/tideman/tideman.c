@@ -198,8 +198,8 @@ void lock_pairs(void)
             temp_locked[pairs[i].winner][pairs[i].loser] = true;
             temp_locked[pairs[i].loser][pairs[i].winner] = false;
             // Implementation of the BFS algorithm
-            bool bfs(int mat[][MAX], int n, int start)
-            bool cyclic = bfs(temp_locked[candidate_count][candidate_count], candidate_count, i)
+            bool bfs(int mat[][MAX], int n, int start);
+            bool cyclic = bfs(temp_locked[candidate_count][candidate_count], candidate_count, i);
             if (!cyclic)
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;
