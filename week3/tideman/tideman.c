@@ -204,23 +204,25 @@ void lock_pairs(void)
             */
             bool temp_locked[MAX][MAX];
             bool cyclic;
+
             // Copy elements of locked into temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
             // Add edge to temp_locked
             temp_locked[pairs[i].winner][pairs[i].loser] = true;
             temp_locked[pairs[i].loser][pairs[i].winner] = false;
+
             // Implementation of the BFS algorithm
             int queue[candidate_count], visited[candidate_count], parent[candidate_count];
             int front = 0, rear = 0;
 
             // The initial values of parents and visited are all zeroes
-            for (int i = 0; i < nodes; i++)
+            for (int k = 0; k < candidate_count; i++)
             {
-                visited[i] = 0;
-                parent[i] = 0;
+                visited[k] = 0;
+                parent[k] = 0;
             }
             // Place the first node in the queue and mark it as visited
-            queue[rear++] = start;
+            queue[rear++] = i;
             visited[start] = true;
             // Loop from front to rear, to empty the queue
             while (front < rear)
@@ -228,9 +230,9 @@ void lock_pairs(void)
                 // Dequeue node
                 int x = queue[front++];
                 // Search all child nodes of queue
-                for (int y = 0; y < nodes; y++)
+                for (int y = 0; y < candidate_count; y++)
                 {
-                    if (test_mat[x][y] == true) // If there is an edge between element x and element y
+                    if (temp_locked[x][y] == true) // If there is an edge between element x and element y
                         {
                             // If this element has not been visited then enqueu it and mark it as visited
                             if (visited == true)
