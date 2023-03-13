@@ -189,45 +189,8 @@ void lock_pairs(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            // For a cycle to appear, their must be a diagonal element within the square matrix that is greater than zero
-            // temp_locked array is a copy of locked to which the edge will be added and then checked if it is a cyclic matrix
-            // cyclic contains the result to whether adding current edge will cause a cycle
-            bool cyclic = false;
-            bool temp_locked[MAX][MAX];
-            bool temp_squared[MAX][MAX];
-            // Copy elements of locked into temp_locked
-            memcpy(temp_locked, locked, sizeof(locked));
-            // Add edge to temp_locked
-            temp_locked[pairs[i].winner][pairs[i].loser] = true;
-            temp_locked[pairs[i].loser][pairs[i].winner] = false;
-            // Multiply temp_locked by itself and store result in temp_squared
-            for (int x = 0; x < candidate_count; x++)
-            {
-                for (int y = 0; y < candidate_count; y++)
-                {
-                    temp_squared[y][x] = false;
-                    for (int z = 0; z < candidate_count; z++)
-                    {
-                        temp_squared[x][y] += temp_locked[i][z]*temp_locked[z][j];
-                    }
-                }
-            }
-            // Check if temp_squared has any non-zero elements in it's diagonal
-            for (int x = 0; x < candidate_count; x++)
-            {
-                if (temp_squared[i][i] > 0)
-                {
-                    cyclic = true;
-                }
-            }
-            if (!cyclic)
-            {
-                locked[pairs[i].winner][pairs[i].loser] = true;
-                locked[pairs[i].loser][pairs[i].winner] = false;
-            }
-        }
+            locked[pairs[i].winner][pairs[i].loser] = true;
+            locked[pairs[i].loser][pairs[i].winner] = false;
     }
     return;
 }
