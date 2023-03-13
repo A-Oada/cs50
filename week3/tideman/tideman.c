@@ -191,6 +191,17 @@ void lock_pairs(void)
     {
         for (int j = 0; j < candidate_count; j++)
         {
+            /**
+             *  Use BFS algorithm to find whether a matrix is cyclic
+             *  For a matrix to be cyclic, a node that has already been visited that is not the parent of the current node
+             *  must be encountered by the current node.
+             *  The number nodes in the graph is the same number of the candidates.
+             *  The matrix passed into the algorithm will be a copy of the main locked function but added to it is the pair
+             *  that will be checked for possible cycle causing.
+             *  Result of the algorithm will be stored in the bool variable cyclic.
+             *  locked will only be updated if and only if cyclic is false.
+             *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
+            */
             bool temp_locked[MAX][MAX];
             // Copy elements of locked into temp_locked
             memcpy(temp_locked, locked, sizeof(locked));
@@ -198,9 +209,8 @@ void lock_pairs(void)
             temp_locked[pairs[i].winner][pairs[i].loser] = true;
             temp_locked[pairs[i].loser][pairs[i].winner] = false;
             // Implementation of the BFS algorithm
-            bool bfs(bool mat[MAX][MAX], int n, int start);
-            bool cyclic;
-            cyclic = bfs(temp_locked[MAX][MAX], candidate_count, i);
+            bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start);
+            bool cyclic = check_cycle(temp_locked, candidate_count, i);
             if (!cyclic)
             {
                 locked[pairs[i].winner][pairs[i].loser] = true;
@@ -238,56 +248,45 @@ void print_winner(void)
     return;
 }
 
-/**
- *  Use BFS algorithm to find whether a matrix is cyclic
- *  For a matrix to be cyclic, a node that has already been visited that is not the parent of the current node
- *  must be encountered by the current node.
- *  The number nodes in the graph is the same number of the candidates.
- *  The matrix passed into the algorithm will be a copy of the main locked function but added to it is the pair
- *  that will be checked for possible cycle causing.
- *  Result of the algorithm will be stored in the bool variable cyclic.
- *  locked will only be updated if and only if cyclic is false.
- *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
-*/
-bool bfs(bool mat[MAX][MAX], int n, int start)
+bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start)
 {
-    int queue[candidate_count]; // queue for storing nodes
-    int front = 0; // front index of queue
-    int rear = 0; // rear index of queue
-    int visited[candidate_count]; // array for marking visited nodes
-    int parent[candidate_count]; // array for storing parent nodes
-    int i, u, v;
+    int queue[candidate_count], visited[candidate_count], parent[candidate_count];
+    int front = 0, rear = 0;
 
-    // initialize visited and parent arrays
-    for (i = 0; i < n; i++) {
+    // The initial values of parents and visited are all zeroes
+    for (int i = 0; i < nodes; i++)
+    {
         visited[i] = 0;
-        parent[i] = -1;
+        parent[i] = 0;
     }
-
-    // enqueue start node and mark it as visited
+    // Place the first node in the queue and mark it as visited
     queue[rear++] = start;
-    visited[start] = 1;
-
-    // loop until queue is empty
-    while (front != rear) {
-        // dequeue a node
-        u = queue[front++];
-        printf("%d ", u); // print the node
-
-        // loop through all adjacent nodes of u
-        for (v = 0; v < n; v++) {
-            if (mat[u][v] == 1) { // if there is an edge between u and v
-                if (visited[v] == 0) { // if v is not visited
-                    // enqueue v and mark it as visited
-                    queue[rear++] = v;
-                    visited[v] = 1;
-                    parent[v] = u; // set u as the parent of v
+    visited[start] = true;
+    // Loop from front to rear, to empty the queue
+    while (front < rear)
+    {
+        // Dequeue node
+        int x = queue[front++];
+        // Search all child nodes of queue
+        for (int y = 0; y < nodes; y++)
+        {
+            if (test_mat[x][y] == true) // If there is an edge between element x and element y
+                {
+                    // If this element has not been visited then enqueue it and mark it as visited
+                    if (visited[y] == true)
+                    {
+                        queue[rear++] = y;
+                        visited[y] = true;
+                        // Set the parent of v as x
+                        parent[y] = x;
+                    }
+                    // If y has already been visited and it is not a parent of x, then a cycle exists
+                    else if (parent[u] != v)
+                    {
+                        return true;
+                    }
                 }
-                else if (parent[u] != v) { // if v is already visited and not the parent of u
-                    return true; // there is a cycle in the graph
-                }
-            }
         }
     }
-    return false; // there is no cycle in the graph
+    return false;
 }
