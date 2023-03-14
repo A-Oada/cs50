@@ -185,73 +185,41 @@ void sort_pairs(void)
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs(void)
+void lock_pairs()
 {
-    bool temp_locked[candidate_count][candidate_count];
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            temp_locked[i][j] = locked[i][j];
-        }
-    }
-
+    bool makes_circle(int cycle_start, int loser);
     for (int i = 0; i < pair_count; i++)
     {
-        int winner = pairs[i].winner;
-        int loser = pairs[i].loser;
-
-        temp_locked[winner][loser] = true;
-        bool has_cycle(int start, bool temp_locked[candidate_count][candidate_count]);
-        if (!has_cycle(winner, temp_locked))
+        if (!makes_circle(pairs[i].winner, pairs[i].loser))
         {
-            locked[winner][loser] = true;
-        }
-        else
-        {
-            temp_locked[winner][loser] = false;
+            // Lock the pair unless it makes a circle
+            locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
 }
 
-bool has_cycle(int start, bool temp_locked[candidate_count][candidate_count])
+// Recursive function to check if entry makes a circle
+bool makes_circle(int cycle_start, int loser)
 {
-    bool visited[candidate_count];
-    for (int i = 0; i < candidate_count; i++)
+    if (loser == cycle_start)
     {
-        visited[i] = false;
+        // If the current loser is the cycle start
+        // The entry makes a circle
+        return true;
     }
-    bool dfs(int start, bool visited[candidate_count], bool temp_locked[candidate_count][candidate_count]);
-    return dfs(start, visited, temp_locked);
-}
-
-bool dfs(int start, bool visited[candidate_count], bool temp_locked[candidate_count][candidate_count])
-{
-    visited[start] = true;
-
     for (int i = 0; i < candidate_count; i++)
     {
-        if (temp_locked[start][i])
+        if (locked[loser][i])
         {
-            if (!visited[i])
+            if (makes_circle(cycle_start, i))
             {
-                if (dfs(i, visited, temp_locked))
-                {
-                    return true;
-                }
-            }
-            else if (i == start)
-            {
+                // Forward progress through the circle
                 return true;
             }
         }
     }
-
     return false;
 }
-
-
-
 
 // Print the winner of the election
 void print_winner(void)
