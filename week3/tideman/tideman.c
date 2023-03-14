@@ -252,10 +252,21 @@ void print_winner(void)
         }
     }
     // Check the number of true values in each row,
-    // Print winning/tied candidates
+    // if these numbers are equal to  most, print them
     for (int i = 0; i < candidate_count; i++)
     {
-        printf("%s\n", candidates[sources[i]]);
+        int votes = 0;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[i][j] == true)
+            {
+                votes++;
+            }
+            if (votes >= most)
+            {
+                printf("%s  ", candidates[i]);
+            }
+        }
     }
     return;
 }
