@@ -231,34 +231,19 @@ bool cyclic(int start, int loser)
 // Print the winner of the election
 void print_winner(void)
 {
-    // winner will be determined by the amounts of "true" values in the locked array
-    // The row that has the largest amount of true values is has the winners index
-    int most = 0;
-    for (int i = 0; i < candidate_count; i ++)
-    {
-        int temp_sum = 0;
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j] == true)
-            {
-                temp_sum++;
-            }
-        }
-        if (temp_sum > most)
-        {
-            most = temp_sum;
-        }
-    }
-    // Check the number of true values in each row,
-    // if these numbers are equal to  most, print the corresponding candidate
+    bool source = false;
+    // The "Source" is the candidate that has no edges pointing to them
+    // To find this candidate the entire column they belong to must be false
+    // Therefore, check if the candidate's column has zeroes, in it.
+    // If an entire loop is completed where an entire column of locked is made up of zero
+    // Break from the loop and print the candidate corresponding to the exit value of the loop
     for (int i = 0; i < candidate_count; i++)
     {
-        int votes = 0;
         for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[i][j] == true)
+            if (locked[j][i] == false)
             {
-                votes++;
+                source = false;
             }
         }
         if (votes >= most)
