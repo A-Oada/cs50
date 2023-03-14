@@ -33,6 +33,7 @@ void record_preferences(int ranks[]);
 void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
+bool cyclic(int start, int loser);
 void print_winner(void);
 
 int main(int argc, string argv[])
@@ -199,9 +200,33 @@ void lock_pairs()
     {
         // cyclic is the function that will determine whether there is an edge
         if (!cyclic(pairs[i].winner, pairs[i].loser))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
     }
 }
 
+// Helper function that determines whether there is a circle
+bool cyclic(int start, loser)
+{
+    if (start == loser)
+    {
+        return true;
+    }
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // If the loser to the original winner has any losers
+        if (locked[loser][i])
+        {
+            // check if the loser to the original loser is the same as start
+            if (cyclic(start, i))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 // Print the winner of the election
 void print_winner(void)
 {
