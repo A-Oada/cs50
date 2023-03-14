@@ -207,7 +207,7 @@ void lock_pairs()
 }
 
 // Helper function that determines whether there is a circle
-bool cyclic(int start, loser)
+bool cyclic(int start, int loser)
 {
     if (start == loser)
     {
