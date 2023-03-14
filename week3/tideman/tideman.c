@@ -205,7 +205,6 @@ void lock_pairs(void)
         memcpy(temp_locked, locked, sizeof(locked));
         // Add edge to temp_locked
         temp_locked[pairs[i].winner][pairs[i].loser] = true;
-        temp_locked[pairs[i].loser][pairs[i].winner] = false;
         // Implementation of the DFS algorithm
         // First create an array visisted that will be initialized to zero before bing passed
         // to the cyclic function
