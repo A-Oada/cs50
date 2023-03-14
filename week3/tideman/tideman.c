@@ -262,9 +262,9 @@ void print_winner(void)
             }
         }
         if (votes >= most)
-            {
-                printf("%s\n", candidates[i]);
-            }
+        {
+            printf("%s\n", candidates[i]);
+        }
     }
     return;
 }
