@@ -271,21 +271,21 @@ bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start)
         for (int y = 0; y < nodes; y++)
         {
             if (test_mat[x][y] == true) // If there is an edge between element x and element y
+            {
+                // If this element has not been visited then enqueue it and mark it as visited
+                if (visited[y] == true)
                 {
-                    // If this element has not been visited then enqueue it and mark it as visited
-                    if (visited[y] == true)
-                    {
-                        queue[rear++] = y;
-                        visited[y] = true;
-                        // Set the parent of v as x
-                        parent[y] = x;
-                    }
-                    // If y has already been visited and it is not a parent of x, then a cycle exists
-                    else if (parent[u] != v)
-                    {
-                        return true;
-                    }
+                    queue[rear++] = y;
+                    visited[y] = true;
+                    // Set the parent of v as x
+                    parent[y] = x;
                 }
+                // If y has already been visited and it is not a parent of x, then a cycle exists
+                else if (parent[x] != y)
+                {
+                    return true;
+                }
+            }
         }
     }
     return false;
