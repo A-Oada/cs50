@@ -194,7 +194,12 @@ void lock_pairs()
      *  If the loser does win, it checks compares the loser to the loser with start
      *  It goes on to the bottom of the graph
      *  It iterates a number of times = candidate_count, since the longest possible path  for a cycle is candidate_count - 1
-    */
+     */
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // cyclic is the function that will determine whether there is an edge
+        if (!cyclic(pairs[i].winner, pairs[i].loser))
+    }
 }
 
 // Print the winner of the election
