@@ -187,65 +187,54 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    bool temp_locked[candidate_count][candidate_count];
     for (int i = 0; i < candidate_count; i++)
     {
-        /**
-         *  Use BFS algorithm to find whether a matrix is cyclic
-         *  For a matrix to be cyclic, a node that has already been visited that is not the parent of the current node
-         *  must be encountered by the current node.
-         *  The number nodes in the graph is the  number of candidates.
-         *  The matrix passed into the algorithm will be a copy of the main locked function but added to it is the pair
-         *  that will be checked for possible a cycle.
-         *  Result of the algorithm will be stored in the bool variable cyclic.
-         *  locked will only be updated if and only if cyclic is false.
-         *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
-        */
-        bool temp_locked[MAX][MAX];
-        // Copy elements of locked into temp_locked
-        memcpy(temp_locked, locked, sizeof(locked));
-        // Add edge to temp_locked
-        temp_locked[pairs[i].winner][pairs[i].loser] = true;
-        // Implementation of the DFS algorithm
-        // First create an array visisted that will be initialized to zero before bing passed
-        // to the cyclic function
-        bool visited[candidate_count];
         for (int j = 0; j < candidate_count; j++)
         {
-            visited[j] = false;
-        }
-        // Prototype of cyclic function
-        bool cyclic(int candidate, bool visited[], bool graph[candidate_count][candidate_count]);
-        if (!cyclic(i, visited, temp_locked))
-        {
-            locked[pairs[i].winner][pairs[i].loser] = true;
+            temp_locked[i][j] = locked[i][j];
         }
     }
-    return;
+
+    for (int i = 0; i < pair_count; i++)
+    {
+        int winner = pairs[i].winner;
+        int loser = pairs[i].loser;
+
+        temp_locked[winner][loser] = true;
+        bool has_cycle(int start, bool temp_locked[candidate_count][candidate_count]);
+        if (!has_cycle(winner, temp_locked))
+        {
+            locked[winner][loser] = true;
+        }
+    }
 }
 
-// Function that will check for cycle
-bool cyclic(int candidate, bool visited[], bool graph[candidate_count][candidate_count])
+bool has_cycle(int start, bool temp_locked[candidate_count][candidate_count])
 {
-    if (visited[candidate])
+    bool visited[candidate_count];
+    for (int i = 0; i < candidate_count; i++)
     {
-        return true;
+        visited[i] = false;
     }
-
-    visited[candidate] = true;
 
     for (int i = 0; i < candidate_count; i++)
     {
-        if (graph[candidate][i])
+        if (!visited[i] && temp_locked[start][i])
         {
-            if (cyclic(i, visited, graph))
+            visited[i] = true;
+            if (has_cycle(i, temp_locked))
             {
                 return true;
             }
+            visited[i] = false;
         }
     }
 
     return false;
 }
+
+
 
 // Print the winner of the election
 void print_winner(void)
