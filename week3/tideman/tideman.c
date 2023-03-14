@@ -227,15 +227,13 @@ bool cyclic(int start, int loser)
     }
     return false;
 }
+
 // Print the winner of the election
 void print_winner(void)
 {
     // winner will be determined by the amounts of "true" values in the locked array
     // The row that has the largest amount of true values is has the winners index
-    // If there are is a tie, then all tied candidates' indeces are added to sources array
-    // most is a sum that will determine which row has the largest number of true values
     int most = 0;
-    int sources[candidate_count];
     for (int i = 0; i < candidate_count; i ++)
     {
         int temp_sum = 0;
@@ -252,7 +250,7 @@ void print_winner(void)
         }
     }
     // Check the number of true values in each row,
-    // if these numbers are equal to  most, print them
+    // if these numbers are equal to  most, print the corresponding candidate
     for (int i = 0; i < candidate_count; i++)
     {
         int votes = 0;
