@@ -193,9 +193,9 @@ void lock_pairs(void)
          *  Use BFS algorithm to find whether a matrix is cyclic
          *  For a matrix to be cyclic, a node that has already been visited that is not the parent of the current node
          *  must be encountered by the current node.
-         *  The number nodes in the graph is the same number of the candidates.
+         *  The number nodes in the graph is the  number of candidates.
          *  The matrix passed into the algorithm will be a copy of the main locked function but added to it is the pair
-         *  that will be checked for possible cycle causing.
+         *  that will be checked for possible a cycle.
          *  Result of the algorithm will be stored in the bool variable cyclic.
          *  locked will only be updated if and only if cyclic is false.
          *  The initial node that will be checked will be the i-th node (Algorithm will go through entire graph anyways before returning true).
@@ -212,7 +212,6 @@ void lock_pairs(void)
         if (!cyclic)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
-            locked[pairs[i].loser][pairs[i].winner] = false;
         }
     }
     return;
