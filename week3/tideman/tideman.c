@@ -187,38 +187,14 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs()
 {
-    bool makes_circle(int cycle_start, int loser);
-    for (int i = 0; i < pair_count; i++)
-    {
-        if (!makes_circle(pairs[i].winner, pairs[i].loser))
-        {
-            // Lock the pair unless it makes a circle
-            locked[pairs[i].winner][pairs[i].loser] = true;
-        }
-    }
-}
-
-// Recursive function to check if entry makes a circle
-bool makes_circle(int cycle_start, int loser)
-{
-    if (loser == cycle_start)
-    {
-        // If the current loser is the cycle start
-        // The entry makes a circle
-        return true;
-    }
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (locked[loser][i])
-        {
-            if (makes_circle(cycle_start, i))
-            {
-                // Forward progress through the circle
-                return true;
-            }
-        }
-    }
-    return false;
+    /**
+     *  This function will check for a loser via recursion
+     *  In the recursive helper function cyclic, the function will retain the starting candidate,
+     *  then go down the graph and see if the loser to start defeats anyone
+     *  If the loser does win, it checks compares the loser to the loser with start
+     *  It goes on to the bottom of the graph
+     *  It iterates a number of times = candidate_count, since the longest possible path  for a cycle is candidate_count - 1
+    */
 }
 
 // Print the winner of the election
