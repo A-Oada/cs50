@@ -206,15 +206,46 @@ void lock_pairs(void)
         // Add edge to temp_locked
         temp_locked[pairs[i].winner][pairs[i].loser] = true;
         temp_locked[pairs[i].loser][pairs[i].winner] = false;
-        // Implementation of the BFS algorithm
-        bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start);
-        bool cyclic = check_cycle(temp_locked, candidate_count, i);
-        if (!cyclic)
+        // Implementation of the DFS algorithm
+        // First create an array visisted that will be initialized to zero before bing passed
+        // to the cyclic function
+        bool visited[candidate_count];
+        for (int j = 0; j < candidate_count; j++)
+        {
+            visited[j] = false;
+        }
+        // Prototype of cyclic function
+        bool cyclic(int candidate, bool visited[], bool graph[candidate_count][candidate_count]);
+        if (!cyclic(i, visited, temp_locked))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
     return;
+}
+
+// Function that will check for cycle
+bool cyclic(int candidate, bool visited[], bool graph[candidate_count][candidate_count])
+{
+    if (visited[candidate])
+    {
+        return true;
+    }
+
+    visited[candidate] = true;
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (graph[candidate][i])
+        {
+            if (cyclic(i, visited, graph))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 // Print the winner of the election
@@ -242,47 +273,4 @@ void print_winner(void)
     }
     printf("%s\n", candidates[source]);
     return;
-}
-
-bool check_cycle(bool test_mat[MAX][MAX], int nodes, int start)
-{
-    int queue[candidate_count], visited[candidate_count], parent[candidate_count];
-    int front = 0, rear = 0;
-
-    // The initial values of parents and visited are all zeroes
-    for (int i = 0; i < nodes; i++)
-    {
-        visited[i] = 0;
-        parent[i] = 0;
-    }
-    // Place the first node in the queue and mark it as visited
-    queue[rear++] = start;
-    visited[start] = true;
-    // Loop from front to rear, to empty the queue
-    while (front < rear)
-    {
-        // Dequeue node
-        int x = queue[front++];
-        // Search all child nodes of queue
-        for (int y = 0; y < nodes; y++)
-        {
-            if (test_mat[x][y] == true) // If there is an edge between element x and element y
-            {
-                // If this element has not been visited then enqueue it and mark it as visited
-                if (visited[y] == true)
-                {
-                    queue[rear++] = y;
-                    visited[y] = true;
-                    // Set the parent of v as x
-                    parent[y] = x;
-                }
-                // If y has already been visited and it is not a parent of x, then a cycle exists
-                else if (parent[x] != y)
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
 }
