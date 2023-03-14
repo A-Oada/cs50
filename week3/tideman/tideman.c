@@ -230,10 +230,12 @@ bool cyclic(int start, int loser)
 // Print the winner of the election
 void print_winner(void)
 {
-    // Source will be checked by the amounts of "true" values in the locked array
-    // The row that has the largest amount of true values is the source
+    // winner will be determined by the amounts of "true" values in the locked array
+    // The row that has the largest amount of true values is has the winners index
+    // If there are is a tie, then all tied candidates' indeces are added to sources array
     // most is a sum that will determine which row has the largest number of true values
-    int source, most = 0;
+    int most = 0;
+    int sources[candidate_count];
     for (int i = 0; i < candidate_count; i ++)
     {
         int temp_sum = 0;
