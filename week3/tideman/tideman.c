@@ -235,7 +235,7 @@ void print_winner(void)
     // If there are is a tie, then all tied candidates' indeces are added to sources array
     // most is a sum that will determine which row has the largest number of true values
     int most = 0;
-    int sources[MAX];
+    int sources[candidate_count];
     for (int i = 0; i < candidate_count; i ++)
     {
         int temp_sum = 0;
@@ -249,13 +249,9 @@ void print_winner(void)
         if (temp_sum > most)
         {
             most = temp_sum;
-            // Store the candidate with most votes
-            for (int j = 0; j < candidate_count; j++)
-            {
-                sources[j] = i;
-            }
         }
     }
+    // Check the number of true values in each row,
     // Print winning/tied candidates
     for (int i = 0; i < candidate_count; i++)
     {
