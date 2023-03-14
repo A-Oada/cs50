@@ -207,6 +207,10 @@ void lock_pairs(void)
         {
             locked[winner][loser] = true;
         }
+        else
+        {
+            temp_locked[winner][loser] = false;
+        }
     }
 }
 
@@ -217,22 +221,35 @@ bool has_cycle(int start, bool temp_locked[candidate_count][candidate_count])
     {
         visited[i] = false;
     }
+    bool dfs(int start, bool visited[candidate_count], bool temp_locked[candidate_count][candidate_count]);
+    return dfs(start, visited, temp_locked);
+}
+
+bool dfs(int start, bool visited[candidate_count], bool temp_locked[candidate_count][candidate_count])
+{
+    visited[start] = true;
 
     for (int i = 0; i < candidate_count; i++)
     {
-        if (!visited[i] && temp_locked[start][i])
+        if (temp_locked[start][i])
         {
-            visited[i] = true;
-            if (has_cycle(i, temp_locked))
+            if (!visited[i])
+            {
+                if (dfs(i, visited, temp_locked))
+                {
+                    return true;
+                }
+            }
+            else if (i == start)
             {
                 return true;
             }
-            visited[i] = false;
         }
     }
 
     return false;
 }
+
 
 
 
