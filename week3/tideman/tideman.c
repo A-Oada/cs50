@@ -262,11 +262,11 @@ void print_winner(void)
             {
                 votes++;
             }
-            if (votes >= most)
-            {
-                printf("%s  ", candidates[i]);
-            }
         }
+        if (votes >= most)
+            {
+                printf("%s \n", candidates[i]);
+            }
     }
     return;
 }
