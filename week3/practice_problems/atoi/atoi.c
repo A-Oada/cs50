@@ -38,11 +38,11 @@ int convert(string input)
         {
             i++;
         }
-        // Print as an int using type casting, subtract 48 as ASCII value of 0 is 48
-        printf("%i", (int)(input[i] - 48));
-    }
+    // Print as an int using type casting, subtract 48 as ASCII value of 0 is 48
+    printf("%i", (int)(input[i] - 48));
     // Set the last character to NULL
     input[i] = NULL;
     // Recurse
     convert(input);
+    }
 }
