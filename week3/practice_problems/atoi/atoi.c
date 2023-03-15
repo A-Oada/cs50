@@ -25,9 +25,18 @@ int main(void)
 
 int convert(string input)
 {
-    // TODO
+    // Find number of characters through a counting loop
+    // Get to last character
+    // Print last character as an int
+    // Set last character to NULL
+    // Repeat till input[0] == NULL
     if (input[0] != NULL)
     {
-
+        int i = 0;
+        // Find character count
+        while (input[i] != NULL)
+        {
+            i++;
+        }
     }
 }
