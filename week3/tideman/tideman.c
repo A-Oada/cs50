@@ -231,8 +231,6 @@ bool cyclic(int start, int loser)
 // Print the winner of the election
 void print_winner(void)
 {
-    bool source = false;
-    int winner;
     // The "Source" is the candidate that has no edges pointing to them
     // To find this candidate the entire column they belong to must be false
     // Therefore, check if the candidate's column has zeroes, in it.
@@ -240,20 +238,21 @@ void print_winner(void)
     // Break from the loop and print the candidate corresponding to the exit value of the loop
     for (int i = 0; i < candidate_count; i++)
     {
+        bool source = true;
         for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[j][i] == false)
+            if (locked[j][i])
             {
-                source = true;
-                winner = i;
+                source = false;
+                break;
             }
         }
         // If an entire column has been checked and source is true, exit the loop and print winner
-        if (source == true)
+        if (source)
         {
+            printf("%s\n", candidates[i]);
             break;
         }
     }
-    printf("%s\n", candidates[winner]);
     return;
 }
