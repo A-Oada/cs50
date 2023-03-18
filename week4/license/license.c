@@ -43,5 +43,7 @@ int main(int argc, char *argv[])
     {
         free(plates[i]);
     }
+
+    // Close the opened file
     fclose(infile);
 }
