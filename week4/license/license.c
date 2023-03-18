@@ -32,9 +32,16 @@ int main(int argc, char *argv[])
         idx++;
     }
 
+    // Print the  plate numbers
     for (int i = 0; i < 8; i++)
     {
         printf("%s\n", plates[i]);
+    }
+
+    // Free the allocated memory
+    for (int i = 0; i < idx; i++)
+    {
+        free(plates[i]);
     }
     fclose(infile);
 }
