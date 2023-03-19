@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     buffer = malloc(sizeof(int16_t));
     while (fread(buffer, sizeof(int16_t), 1, input) == 1)
     {
-        &buffer = buffer * 2;
+        printf("%d", &buffer);
         fwrite(buffer, sizeof(int16_t), 1, input);
     }
 
