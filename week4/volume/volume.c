@@ -41,10 +41,9 @@ int main(int argc, char *argv[])
     fwrite(header, sizeof(uint8_t), HEADER_SIZE, output);
 
     // TODO: Read samples from input file and write updated data to output file
-    int16_t buffer;
+    int16_t *buffer = (int16_t *)malloc(sizeof(int16_t));
     while (fread(&buffer, sizeof(int16_t), 1, input) == 1)
     {
-        printf("%d", buffer);
         fwrite(&buffer, sizeof(int16_t), 1, input);
     }
 
