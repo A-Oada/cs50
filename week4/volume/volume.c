@@ -41,7 +41,9 @@ int main(int argc, char *argv[])
     fwrite(header, sizeof(uint8_t), HEADER_SIZE, output);
 
     // Read samples from input file and write updated data to output file
+    // Initialize the buffer that will hold the sample
     int16_t buffer;
+    // For each sample, multply by factor and write to output
     while (fread(&buffer, sizeof(int16_t), 1, input) == 1)
     {
         buffer *= factor;
