@@ -42,8 +42,10 @@ int main(int argc, char *argv[])
 
     // TODO: Read samples from input file and write updated data to output file
     int16_t *buffer = NULL;
+    buffer = malloc(sizeof(int16_t));
     while (fread(buffer, sizeof(int16_t), 1, input) == 1)
     {
+        &buffer = buffer * 2;
         fwrite(buffer, sizeof(int16_t), 1, input);
     }
 
