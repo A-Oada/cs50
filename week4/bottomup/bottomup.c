@@ -1,7 +1,8 @@
-// Copies a BMP file and reverses the order of the scanlines
+// Copies a BMP file
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "bmp.h"
 
 int main(int argc, char *argv[])
@@ -61,30 +62,31 @@ int main(int argc, char *argv[])
     // Determine padding for scanlines
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
-    // Allocate memory for an array of scanlines
-    RGBTRIPLE *scanline = malloc(bi.biWidth * sizeof(RGBTRIPLE));
-
     // Iterate over infile's scanlines
-    for (int i = abs(bi.biHeight) - 1; i >= 0; i--)
+    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        // Read scanline from infile
-        fread(scanline, sizeof(RGBTRIPLE), bi.biWidth, inptr);
+        // Iterate over pixels in scanline
+        for (int j = 0; j < bi.biWidth; j++)
+        {
+            // Temporary storage
+            RGBTRIPLE triple;
 
-        // Write reversed scanline to outfile
-        fwrite(scanline, sizeof(RGBTRIPLE), bi.biWidth, outptr);
+            // Read RGB triple from infile
+            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
-        // Add padding to outfile, if any
+            // Write RGB triple to outfile
+            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+        }
+
+        // Skip over padding, if any
+        fseek(inptr, padding, SEEK_CUR);
+
+        // Then add it back (to demonstrate how)
         for (int k = 0; k < padding; k++)
         {
             fputc(0x00, outptr);
         }
-
-        // Skip over padding in infile, if any
-        fseek(inptr, padding, SEEK_CUR);
     }
-
-    // Free memory for scanline
-    free(scanline);
 
     // Close infile
     fclose(inptr);
