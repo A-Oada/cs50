@@ -63,6 +63,16 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
+    // Reverse right half of image
+    for (int i = 0; i < height; j++)
+    {
+        for (int j = width/2; j < width; j++)
+        {
+            image[i][j].rgbtRed = image[i][width/2 - j].rgbtRed;
+            image[i][j].rgbtGreen = image[i][width/2 - j].rgbtGreen;
+            image[i][j].rgbtBlue = image[i][width/2 - j].rgbtBlue;
+        }
+    }
     return;
 }
 
