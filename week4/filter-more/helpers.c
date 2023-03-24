@@ -27,9 +27,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE half[height/2][width/2];
+    RGBTRIPLE half[height][width/2];
     // Copy 1st half of image into an array
-    for (int i = 0; i < height/2; i++)
+    for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width/2; j++)
         {
@@ -51,14 +51,15 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     }
 
     // Copy left half of image onto the right from the stored array
-    int half_height = 0, half_width = 0;
-    for (int i = height/2; i < height; i++)
+    int half_width = 0;
+    for (int i = 0; i < height; i++)
     {
-        for (int j = width/2; j < height; j++)
+        for (int j = width/2; j < width; j++)
         {
-            image[i][j].rgbtRed = half[half_height][half_width].rgbtRed;
-            image[i][j].rgbtGreen = half[half_height][half_width].rgbtGreen;
-            image[i][j].rgbtBlue = half[half_height][half_width].rgbtBlue;
+            image[i][j].rgbtRed = half[i][half_width].rgbtRed;
+            image[i][j].rgbtGreen = half[i][half_width].rgbtGreen;
+            image[i][j].rgbtBlue = half[i][half_width].rgbtBlue;
+            half_width++;
         }
     }
     return;
