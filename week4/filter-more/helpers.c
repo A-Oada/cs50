@@ -42,7 +42,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Copy right half of image into left half
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j <= width/2; j++)
+        for (int j = 0; j < width/2; j++)
         {
             image[i][j].rgbtRed = image[i][width - j].rgbtRed;
             image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
@@ -55,7 +55,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     for (int i = 0; i < height; i++)
     {
         int half_width = width/2;
-        for (int j = width/2 + 1; j < width; j++)
+        for (int j = width/2; j < width; j++)
         {
             image[i][j].rgbtRed = half[i][half_width].rgbtRed;
             image[i][j].rgbtGreen = half[i][half_width].rgbtGreen;
