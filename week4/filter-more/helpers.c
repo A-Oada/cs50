@@ -23,8 +23,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 }
 
 // Reflect image horizontally
+// To reflect the image; copy the value of the first pixel to the last, second to second-to-last... etc
+// At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+
     return;
 }
 
