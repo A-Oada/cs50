@@ -42,7 +42,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Copy right half of image into left half
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width/2; j++)
+        for (int j = 0; j < round((float)width/2); j++)
         {
             image[i][j].rgbtRed = image[i][width - j].rgbtRed;
             image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
