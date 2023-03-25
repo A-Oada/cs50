@@ -49,20 +49,6 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = image[i][width - j].rgbtBlue;
         }
     }
-
-    // Copy left half of image onto the right from the stored array
-    // Image will be copied in og orientation and needs to be reversed
-    for (int i = 0; i < height; i++)
-    {
-        int half_width = width/2;
-        for (int j = width/2; j < width; j++)
-        {
-            image[i][j].rgbtRed = half[i][half_width].rgbtRed;
-            image[i][j].rgbtGreen = half[i][half_width].rgbtGreen;
-            image[i][j].rgbtBlue = half[i][half_width].rgbtBlue;
-            half_width--;
-        }
-    }
     return;
 }
 
