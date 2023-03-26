@@ -31,7 +31,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Copy 1st half of image into an array
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j <= width/2; j++)
+        for (int j = 0; j < width/2 + 1; j++)
         {
             half[i][j].rgbtRed = image[i][j].rgbtRed;
             half[i][j].rgbtGreen = image[i][j].rgbtGreen;
