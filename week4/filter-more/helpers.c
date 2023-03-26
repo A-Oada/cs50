@@ -27,7 +27,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE half[height][width/2];
+    RGBTRIPLE half[height][width/2 + 1];
     // Copy 1st half of image into an array
     for (int i = 0; i < height; i++)
     {
@@ -52,7 +52,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 
 
     // Copy left half of image onto the right from the stored array
-    // Image will be copied in og orientation and needs to be reversed
+    // Image will be copied in original orientation and therefor needs to be reversed
     for (int i = 0; i < height; i++)
     {
         int half_width = width/2;
