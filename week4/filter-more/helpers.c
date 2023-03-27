@@ -44,6 +44,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Creat a copy of image to prevent the updated values from affecting other pixels
+    RGBTRIPLE copy;
     int avgred, avggreen, avgblue, k;
     for (int i = 0; i < height; i++)
     {
@@ -73,11 +75,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgblue = round((float)(avgblue / k));
 
             // Assign new values to the pixel
-            image[i][j].rgbtRed = avgred;
-            image[i][j].rgbtGreen = avggreen;
-            image[i][j].rgbtBlue = avgblue;
+            copy[i][j].rgbtRed = avgred;
+            copy[i][j].rgbtGreen = avggreen;
+            copy[i][j].rgbtBlue = avgblue;
         }
     }
+    image = copy;
     return;
 }
 
