@@ -24,9 +24,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 
 // Reflect image horizontally
 // To reflect the image; copy the value of the first pixel to the last, second to second-to-last... etc
-// At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Since image[0][width] is actually outside the boundaries of the image
+    // The index of the last pixel that will be changed is width - 1
     width = width - 1;
     RGBTRIPLE temp;
     for (int i = 0; i < height; i++)
@@ -43,6 +44,13 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    int a1 = 0, a2 = 0, a3 = 0, average;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+        }
+    }
     return;
 }
 
