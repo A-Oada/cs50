@@ -51,9 +51,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         {
             avgred = 0, avggreen = 0, avgblue = 0, k = 0;
             // For each of the surrounding pixels
-            for (int x = i - 1; x <= i + 1; x++)
+            for (int x = i - 1; x < i + 1; x++)
             {
-                for (int y = j - 1; y <= j + 1; y++)
+                for (int y = j - 1; y < j + 1; y++)
                 {
                     // If the pixel is within the borders of the image
                     if ((!(x < 0) && !(x > height)) && (!(y < 0) && !(y > width)))
@@ -67,9 +67,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-            avgred = avgred / k;
-            avggreen = avggreen / k;
-            avgblue = avgblue / k;
+            avgred = round((float)(avgred / k));
+            avggreen = round((float)(avggreen / k));
+            avgblue = round((float)(avgblue / k));
 
             image[i][j].rgbtRed = avgred;
             image[i][j].rgbtGreen = avggreen;
