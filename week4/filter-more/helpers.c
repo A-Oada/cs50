@@ -24,12 +24,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 
 // Reflect image horizontally
 // To reflect the image; copy the value of the first pixel to the last, second to second-to-last... etc
-// At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE temp;
+    // To preveent issues with indexing the midpoint and last pixel in the image
     width = width - 1;
-    // Copy right half of image into left half
+    // Swap each pixel
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j <= width/2; j++)
