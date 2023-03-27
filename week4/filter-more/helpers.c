@@ -50,11 +50,18 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             avg = 0, k = 0;
+            // For each of the surrounding pixels
             for (int x = i - 1; x <= i + 1; x++)
             {
                 for (int y = j - 1; y <= j + 1; y++)
                 {
-                    if ()
+                    // If the pixel is within the borders of the image
+                    if ((x !< 0 && x !> height) && (y !< 0 && y !> width))
+                    {
+                        // Add up the values of this pixel to avg
+                        avg = avg + RGBTRed.image[x][y] + RGBTGreen.image[x][y] + RGBTBlue.image[x][y];
+                        k++;
+                    }
                 }
             }
         }
