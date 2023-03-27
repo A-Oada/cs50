@@ -56,7 +56,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 for (int y = j - 1; y <= j + 1; y++)
                 {
                     // If the pixel is within the borders of the image
-                    if ((!(x < 0) && !(x > height)) && (!(y < 0) && !(y > width)))
+                    if ((!(x < 0) && !(x >= height)) && (!(y < 0) && !(y >= width)))
                     {
                         // Add up the values of this pixel to avg
                         avgred = avgred + image[x][y].rgbtRed;
