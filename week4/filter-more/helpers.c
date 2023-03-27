@@ -28,11 +28,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     width = width - 1;
-    RGBTRIPLE half[height][width/2];
+    RGBTRIPLE half[height][width/2 + 1];
     // Copy 1st half of image into an array
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width/2 + 1; j++)
+        for (int j = 0; j <= width/2 + 1; j++)
         {
             half[i][j].rgbtRed = image[i][j].rgbtRed;
             half[i][j].rgbtGreen = image[i][j].rgbtGreen;
