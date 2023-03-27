@@ -24,19 +24,45 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 
 // Reflect image horizontally
 // To reflect the image; copy the value of the first pixel to the last, second to second-to-last... etc
+// At the midpoint the image will have two identical halves, therefore store the original 1st half in an array
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE temp;
-    // To preveent issues with indexing the midpoint and last pixel in the image
     width = width - 1;
-    // Swap each pixel
+    RGBTRIPLE half[height][width/2];
+    // Copy 1st half of image into an array
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j <= width/2; j++)
+        for (int j = 0; j < width/2 + 1; j++)
         {
-            temp = image[i][j];
-            image[i][j] = image[i][width - j];
-            image[i][width - j] = temp;
+            half[i][j].rgbtRed = image[i][j].rgbtRed;
+            half[i][j].rgbtGreen = image[i][j].rgbtGreen;
+            half[i][j].rgbtBlue = image[i][j].rgbtBlue;
+        }
+    }
+
+    // Copy right half of image into left half
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width/2 + 1; j++)
+        {
+            image[i][j].rgbtRed = image[i][width - j].rgbtRed;
+            image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
+            image[i][j].rgbtBlue = image[i][width - j].rgbtBlue;
+        }
+    }
+
+
+    // Copy left half of image onto the right from the stored array
+    // Image will be copied in original orientation and therefor needs to be reversed
+    for (int i = 0; i < height; i++)
+    {
+        int half_width = width/2;
+        for (int j = width/2; j < width; j++)
+        {
+            image[i][j].rgbtRed = half[i][half_width].rgbtRed;
+            image[i][j].rgbtGreen = half[i][half_width].rgbtGreen;
+            image[i][j].rgbtBlue = half[i][half_width].rgbtBlue;
+            half_width--;
         }
     }
     return;
