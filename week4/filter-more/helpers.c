@@ -44,26 +44,36 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    int avg, k;
+    int avgred, avggreen, avgblue, k;
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            avg = 0, k = 0;
+            avgred = 0, avggreen = 0, avgblue = 0, k = 0;
             // For each of the surrounding pixels
             for (int x = i - 1; x <= i + 1; x++)
             {
                 for (int y = j - 1; y <= j + 1; y++)
                 {
                     // If the pixel is within the borders of the image
-                    if ((x !< 0 && x !> height) && (y !< 0 && y !> width))
+                    if ((!(x < 0) && !(x > height)) && (!(y < 0) && !(y > width)))
                     {
                         // Add up the values of this pixel to avg
-                        avg = avg + RGBTRed.image[x][y] + RGBTGreen.image[x][y] + RGBTBlue.image[x][y];
+                        avgred = avgred + image[x][y].rgbtRed;
+                        avggreen = avggreen + image[x][y].rgbtGreen;
+                        avgblue = avgblue + image[x][y].rgbtBlue;
                         k++;
                     }
                 }
             }
+
+            avgred = avgred / k;
+            avggreen = avggreen / k;
+            avgblue = avgblue / k;
+
+            image[i][j].rgbtRed = avgred;
+            image[i][j].rgbtGreen = avggreen;
+            image[i][j].rgbtBlue = avgblue;
         }
     }
     return;
