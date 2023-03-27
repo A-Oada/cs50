@@ -77,9 +77,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // Caclulate average values of RGB in pixel
-            avgred = round((float)(avgred / k));
-            avggreen = round((float)(avggreen / k));
-            avgblue = round((float)(avgblue / k));
+            avgred = round(((float)avgred / k));
+            avggreen = round(((float)avggreen / k));
+            avgblue = round(((float)avgblue / k));
 
             // Assign new values to the pixel
             copy[i][j].rgbtRed = avgred;
