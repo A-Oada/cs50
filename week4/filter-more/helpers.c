@@ -67,10 +67,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
+            // Caclulate average values of RGB in pixel
             avgred = round((float)(avgred / k));
             avggreen = round((float)(avggreen / k));
             avgblue = round((float)(avgblue / k));
 
+            // Assign new values to the pixel
             image[i][j].rgbtRed = avgred;
             image[i][j].rgbtGreen = avggreen;
             image[i][j].rgbtBlue = avgblue;
