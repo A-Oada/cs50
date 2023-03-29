@@ -102,5 +102,24 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Create copy of original image to prevent each pixel from affecting the kernels
+    RGBTRIPLE copy[height][width], Gx, Gy;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            copy[i][j] = image[i][j];
+        }
+    }
+
+    int Gxred, Gxgreen, Gxblue, y;
+    for (int i = 1; i < height - 1; i++)
+    {
+        for (int j = 1; j < width - 1; j++)
+        {
+            Gxred = 0; Gxgreen = 0; Gxblue = 0, y = -1;
+            for (int i)
+        }
+    }
     return;
 }
