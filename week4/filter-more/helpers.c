@@ -148,15 +148,16 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                             Gxgreen = Gxgreen + image[x][y].rgbtGreen * k;
                             Gxblue = Gxblue + image[x][y].rgbtBlue * k;
                             k *= -1;
+                            continue;
                         }
                         // Row 2 is multiplied by -2 and 2 for columns 1 and 3 respectively
                         else
                         {
-                            if (y )
                             Gxred = Gxred + image[x][y].rgbtRed * l;
                             Gxgreen = Gxgreen + image[x][y].rgbtRed * l;
                             Gxblue = Gxblue + image[x][y].rgbtBlue * l;
                             l *= -1;
+                            continue;
                         }
                     }
                 }
