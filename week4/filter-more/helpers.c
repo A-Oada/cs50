@@ -139,7 +139,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 for (int y = j - 1; y <= j + 1; y++)
                 {
                     // If the surrounding pixel is within the image and not in middle column of surrounding pixels
-                    if ((!(x < 0) && !(x >= height)) && (!(y < 0) && !(y >= width) && (y != j)))
+                        if ((!(x < 0) && !(x >= height)) && (!(y < 0) && !(y >= width) && (y != j)))
                     {
                         // Rows 1 and 3 in an image are multiplied by -1 and 1 for Column 1 and 3 respectively
                         if (x != i)
@@ -152,6 +152,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         // Row 2 is multiplied by -2 and 2 for columns 1 and 3 respectively
                         else
                         {
+                            if (y )
                             Gxred = Gxred + image[x][y].rgbtRed * l;
                             Gxgreen = Gxgreen + image[x][y].rgbtRed * l;
                             Gxblue = Gxblue + image[x][y].rgbtBlue * l;
