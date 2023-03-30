@@ -125,18 +125,31 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
         }
     }
+
     int Gxred, Gxgreen, Gxblue, k;
+    // For each pixel within the image
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            Gxred = 0; Gxgreen = 0; Gxblue = 0, k = -1;
+            // Calculate Gx values for each color from surrounding pixels
+            Gxred = 0; Gxgreen = 0; Gxblue = 0, k = -1, l = - 2;
             for (int x = i - 1; x <= i + 1; x++)
             {
-                for (int y = j - 1; j <= i + 1; j++)
+                for (int y = j - 1; j <= j + 1; j++)
                 {
-                    // If the pixel is
-                    if ((x < 0) || (x >= height) || (y < 0) || (y >= width))
+                    // If the surrounding pixel is within the image and not in middle column of surrounding pixels
+                    if ((!(x < 0) && !(x >= height)) && (!(y < 0) && !(y >= width) && (y != j)))
+                    {
+                        // Rows 1 and 3 in an image are multiplied by -1 and 1 for Column 1 and 3 respectively
+                        if (x != i)
+                        {
+                            Gxred = Gxred + image[x][y].rgbtRed * k;
+                            Gxgreen = Gxgreen + image[x][y].rgbtGreen * k;
+                            Gxblue = Gxblue + image[x][y].rgbtBlue * k;
+                            k *= -1;
+                        }
+                    }
                 }
             }
         }
