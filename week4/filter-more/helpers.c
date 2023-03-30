@@ -119,9 +119,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {
             if (i == 0 || j == 0)
             {
-                copy[i][j].rgbtRed = 0;
-                copy[i][j].rgbtGreen = 0;
-                copy[i][j].rgbtBlue = 0;
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
             }
         }
     }
@@ -136,7 +136,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             Gxred = 0; Gxgreen = 0; Gxblue = 0, k = -1, l = - 2;
             for (int x = i - 1; x <= i + 1; x++)
             {
-                for (int y = j - 1; y <= j + 1; j++)
+                for (int y = j - 1; y <= j + 1; y++)
                 {
                     // If the surrounding pixel is within the image and not in middle column of surrounding pixels
                     if ((!(x < 0) && !(x >= height)) && (!(y < 0) && !(y >= width) && (y != j)))
