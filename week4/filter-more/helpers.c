@@ -112,13 +112,33 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-    int Gxred, Gxgreen, Gxblue, y;
-    for (int i = 1; i < height - 1; i++)
+    // Make the edges of the image black
+    for (int i = 0; i < height; i++)
     {
-        for (int j = 1; j < width - 1; j++)
+        for (int j = 0; j < width; j++)
         {
-            Gxred = 0; Gxgreen = 0; Gxblue = 0, y = -1;
-            for (int i)
+            if (i == 0 || j == 0)
+            {
+                copy[i][j].rgbtRed = 0;
+                copy[i][j].rgbtGreen = 0;
+                copy[i][j].rgbtBlue = 0;
+            }
+        }
+    }
+    int Gxred, Gxgreen, Gxblue, k;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            Gxred = 0; Gxgreen = 0; Gxblue = 0, k = -1;
+            for (int x = i - 1; x <= i + 1; x++)
+            {
+                for (int y = j - 1; j <= i + 1; j++)
+                {
+                    // If the pixel is
+                    if ((x < 0) || (x >= height) || (y < 0) || (y >= width))
+                }
+            }
         }
     }
     return;
