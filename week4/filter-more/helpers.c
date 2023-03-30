@@ -126,7 +126,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-    int Gxred, Gxgreen, Gxblue, k, l;
+    int Gxred, Gxgreen, Gxblue, k, l, m;
     // For each pixel within the image
     for (int i = 0; i < height; i++)
     {
@@ -144,6 +144,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         // Rows 1 and 3 in an image are multiplied by -1 and 1 for Column 1 and 3 respectively
                         if (x != i)
                         {
+                            if (m > 0)
+                            {
+                                k *= -1;
+                            }
                             Gxred = Gxred + image[x][y].rgbtRed * k;
                             Gxgreen = Gxgreen + image[x][y].rgbtGreen * k;
                             Gxblue = Gxblue + image[x][y].rgbtBlue * k;
@@ -152,6 +156,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         // Row 2 is multiplied by -2 and 2 for columns 1 and 3 respectively
                         else
                         {
+                            if (m > 0)
+                            {
+                                l *= -1;
+                            }
                             Gxred = Gxred + image[x][y].rgbtRed * l;
                             Gxgreen = Gxgreen + image[x][y].rgbtRed * l;
                             Gxblue = Gxblue + image[x][y].rgbtBlue * l;
